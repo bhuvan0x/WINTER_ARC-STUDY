@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="96" fill="#090a10"/>
+  <!-- Subtle grid motif -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#6366f1" stroke-width="2" stroke-opacity="0.25"/>
+  <circle cx="256" cy="256" r="130" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-opacity="0.35"/>
+  <!-- Precision reticle ticks -->
+  <line x1="256" y1="40" x2="256" y2="70" stroke="#818cf8" stroke-width="3"/>
+  <line x1="256" y1="442" x2="256" y2="472" stroke="#818cf8" stroke-width="3"/>
+  <line x1="40" y1="256" x2="70" y2="256" stroke="#818cf8" stroke-width="3"/>
+  <line x1="442" y1="256" x2="472" y2="256" stroke="#818cf8" stroke-width="3"/>
+  <!-- Stylized Sharp 'W' / Winter Arc discipline chevron mark -->
+  <path d="M 140 180 L 195 340 L 256 220 L 317 340 L 372 180" fill="none" stroke="#f8fafc" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Cold sharp violet core -->
+  <polygon points="256,250 220,330 292,330" fill="#6366f1" opacity="0.4"/>
+  <circle cx="256" cy="220" r="8" fill="#38bdf8"/>
+</svg>

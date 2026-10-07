@@ -1,0 +1,6 @@
+{
+  "name": "Winter Arc // Discipline System",
+  "description": "A tactical, local-first day planner and personal operating system for academic and physical discipline.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
