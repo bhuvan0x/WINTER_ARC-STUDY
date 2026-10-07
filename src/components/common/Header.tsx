@@ -10,6 +10,7 @@ import {
   HelpCircle,
   Sun,
   Moon,
+  Cpu,
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -17,6 +18,7 @@ interface HeaderProps {
   onOpenMorningBrief: () => void;
   onOpenNightReport: () => void;
   onOpenScoreBreakdown: () => void;
+  onOpenFeatureCompendium?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -24,6 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenMorningBrief,
   onOpenNightReport,
   onOpenScoreBreakdown,
+  onOpenFeatureCompendium,
 }) => {
   const {
     settings,
@@ -192,6 +195,18 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* PWA Install */}
           <PWAInstallButton />
+
+          {/* System Specs & Features Showcase */}
+          {onOpenFeatureCompendium && (
+            <button
+              onClick={onOpenFeatureCompendium}
+              className="flex items-center gap-1.5 px-2 py-1 rounded text-xs font-mono border border-violet-500/40 bg-violet-950/40 text-violet-300 hover:bg-violet-900/40 hover:text-white transition shadow-sm"
+              title="System Architecture & Feature Showcase"
+            >
+              <Cpu className="w-3.5 h-3.5" />
+              <span className="hidden lg:inline text-[11px] font-bold">FEATURES</span>
+            </button>
+          )}
 
           {/* Keyboard Shortcuts */}
           <button

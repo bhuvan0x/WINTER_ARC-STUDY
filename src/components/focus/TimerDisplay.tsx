@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useFocus } from '../../context/FocusContext';
 import { useApp } from '../../context/AppContext';
-import { formatMinutes } from '../../utils/dateUtils';
+import { CircularTimerRing } from './CircularTimerRing';
+import { CycleTimelineBar } from './CycleTimelineBar';
+import { WaveformVisualizer } from './WaveformVisualizer';
 import {
   Play,
   Pause,
@@ -204,44 +206,32 @@ export const TimerDisplay: React.FC<TimerDisplayProps> = ({
           )}
         </div>
 
-        {/* Current Block Label */}
-        <div className="relative z-10 font-mono text-xs font-bold tracking-widest uppercase mb-4">
-          <span className={`px-3 py-1 rounded border ${
-            isFocusBlock
-              ? 'bg-violet-950/60 border-violet-600 text-violet-300'
-              : 'bg-emerald-950/60 border-emerald-600 text-emerald-300'
-          }`}>
-            {currentBlock?.label || (isFocusBlock ? 'DEEP WORK FOCUS' : 'REST INTERVAL')}
-          </span>
+        {/* Session Multi-Block Timeline */}
+        <div className="relative z-10 max-w-xl mx-auto">
+          <CycleTimelineBar
+            blocks={blocks}
+            currentBlockIndex={currentBlockIndex}
+            whiteRoomMode={whiteRoomMode}
+          />
         </div>
 
-        {/* Big Monospace Timer Display */}
-        <div className="relative z-10 my-4 sm:my-8 font-mono font-bold text-6xl sm:text-8xl tracking-tight select-none">
-          <span className={isFocusBlock ? 'text-white' : 'text-emerald-300'}>
-            {formatTime(secondsRemaining)}
-          </span>
-        </div>
-
-        {/* Progress Bar */}
-        <div className="relative z-10 max-w-md mx-auto my-6">
-          <div className="h-2 w-full bg-slate-950 border border-slate-800 rounded-full overflow-hidden p-0.5">
-            <div
-              className={`h-full rounded-full transition-all duration-1000 ${
-                isFocusBlock ? 'bg-violet-500' : 'bg-emerald-400'
-              }`}
-              style={{ width: `${progressPercent}%` }}
-            />
-          </div>
-          <div className="flex justify-between items-center text-[11px] font-mono text-slate-400 mt-2">
-            <span>{progressPercent}% EXECUTED</span>
-            <span>{currentBlock?.durationMinutes}M TOTAL</span>
-          </div>
+        {/* Centerpiece Circular Ring Timer HUD */}
+        <div className="relative z-10 my-2 flex justify-center">
+          <CircularTimerRing
+            secondsRemaining={secondsRemaining}
+            totalBlockSeconds={totalBlockSeconds}
+            currentBlock={currentBlock}
+            currentBlockIndex={currentBlockIndex}
+            totalBlocks={blocks.length}
+            timerStatus={timerStatus}
+            whiteRoomMode={whiteRoomMode}
+          />
         </div>
 
         {/* Next Block Teaser */}
         {nextBlock && (
-          <div className="relative z-10 text-[11px] font-mono text-slate-400 mb-8">
-            NEXT: <span className="text-slate-300 uppercase font-semibold">{nextBlock.label} ({nextBlock.durationMinutes}M)</span>
+          <div className="relative z-10 text-[11px] font-mono text-slate-400 mb-6">
+            NEXT STAGE: <span className="text-slate-200 uppercase font-semibold">{nextBlock.label} ({nextBlock.durationMinutes}M)</span>
           </div>
         )}
 
@@ -317,6 +307,9 @@ export const TimerDisplay: React.FC<TimerDisplayProps> = ({
           </div>
         )}
       </div>
+
+      {/* Procedural Audio Frequency Oscilloscope Visualizer */}
+      <WaveformVisualizer />
 
       {/* Pause Reason Dialog Modal */}
       {showPauseReasonModal && (

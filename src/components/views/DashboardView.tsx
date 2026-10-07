@@ -11,6 +11,7 @@ import {
   formatDateShort,
 } from '../../utils/dateUtils';
 import { Task, DailyObjective } from '../../types';
+import { DisciplineScoreDial } from '../dashboard/DisciplineScoreDial';
 import {
   CheckCircle2,
   Circle,
@@ -272,6 +273,13 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Mathematical Discipline Score Dial & Vector Card (Figure 1) */}
+      <DisciplineScoreDial
+        breakdown={disciplineBreakdown}
+        onOpenBreakdown={onOpenScoreBreakdown}
+        whiteRoomMode={whiteRoomMode}
+      />
 
       {/* CBSE Academic Engine Strategic Card */}
       <div className="p-4 rounded-lg border border-violet-500/30 bg-[#090b14]/90 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-lg">

@@ -19,6 +19,7 @@ import { ScoreBreakdownModal } from './components/modals/ScoreBreakdownModal';
 import { MorningBriefingModal } from './components/modals/MorningBriefingModal';
 import { NightReportModal } from './components/modals/NightReportModal';
 import { KeyboardShortcutsModal } from './components/modals/KeyboardShortcutsModal';
+import { FeatureCompendiumModal } from './components/modals/FeatureCompendiumModal';
 import { Task } from './types';
 
 const MainLayout: React.FC = () => {
@@ -40,6 +41,7 @@ const MainLayout: React.FC = () => {
   const [isMorningBriefOpen, setIsMorningBriefOpen] = useState(false);
   const [isNightReportOpen, setIsNightReportOpen] = useState(false);
   const [isScoreBreakdownOpen, setIsScoreBreakdownOpen] = useState(false);
+  const [isFeatureCompendiumOpen, setIsFeatureCompendiumOpen] = useState(false);
 
   // Keyboard shortcut listener
   useEffect(() => {
@@ -133,6 +135,7 @@ const MainLayout: React.FC = () => {
         onOpenMorningBrief={() => setIsMorningBriefOpen(true)}
         onOpenNightReport={() => setIsNightReportOpen(true)}
         onOpenScoreBreakdown={() => setIsScoreBreakdownOpen(true)}
+        onOpenFeatureCompendium={() => setIsFeatureCompendiumOpen(true)}
       />
 
       <div className="flex-1 flex max-w-7xl w-full mx-auto">
@@ -204,6 +207,11 @@ const MainLayout: React.FC = () => {
       <KeyboardShortcutsModal
         isOpen={isShortcutsOpen}
         onClose={() => setIsShortcutsOpen(false)}
+      />
+
+      <FeatureCompendiumModal
+        isOpen={isFeatureCompendiumOpen}
+        onClose={() => setIsFeatureCompendiumOpen(false)}
       />
     </div>
   );

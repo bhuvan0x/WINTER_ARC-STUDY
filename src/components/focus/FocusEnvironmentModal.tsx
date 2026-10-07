@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useFocus } from '../../context/FocusContext';
 import { useApp } from '../../context/AppContext';
+import { CircularTimerRing } from './CircularTimerRing';
 import {
   Play,
   Pause,
@@ -66,30 +67,32 @@ export const FocusEnvironmentModal: React.FC = () => {
         </button>
       </div>
 
-      {/* Dominant Centerpiece: Objective & Giant Monospace Timer */}
-      <div className="flex flex-col items-center justify-center text-center my-auto space-y-6">
-        <div className="font-mono text-sm sm:text-base tracking-widest text-slate-400 uppercase max-w-xl">
-          {sessionObjective}
+      {/* Dominant Centerpiece: Objective & Circular Ring Timer */}
+      <div className="flex flex-col items-center justify-center text-center my-auto space-y-4">
+        <div className="font-mono text-sm sm:text-base tracking-widest text-slate-300 uppercase max-w-xl">
+          {sessionObjective || 'UNSPECIFIED DIRECTIVE'}
         </div>
 
-        <div className="font-mono text-xs font-bold px-3 py-1 rounded border border-slate-800 bg-slate-950/60 text-slate-300">
-          {currentBlock?.label || (isFocusBlock ? 'FOCUS BLOCK' : 'RECOVERY BREAK')}
-        </div>
-
-        <div className="font-mono font-bold text-7xl sm:text-9xl md:text-[11rem] tracking-tighter text-white">
-          {formatTime(secondsRemaining)}
-        </div>
+        <CircularTimerRing
+          secondsRemaining={secondsRemaining}
+          totalBlockSeconds={(currentBlock?.durationMinutes || 50) * 60}
+          currentBlock={currentBlock}
+          currentBlockIndex={currentBlockIndex}
+          totalBlocks={blocks.length}
+          timerStatus={timerStatus}
+          whiteRoomMode={whiteRoomMode}
+        />
 
         {/* Minimal Audio Status */}
         {activeTrack && (
-          <div className="flex items-center gap-2 font-mono text-xs text-slate-500">
+          <div className="flex items-center gap-2 font-mono text-xs text-slate-400 bg-slate-950/60 px-3 py-1 rounded-full border border-slate-800">
             <Music className="w-3.5 h-3.5 text-violet-400" />
             <span>{activeTrack.title}</span>
             <button
               onClick={togglePlayAudio}
-              className="text-slate-400 hover:text-white ml-2 underline"
+              className="text-slate-300 hover:text-white ml-2 underline text-[11px]"
             >
-              {isPlayingAudio ? 'PAUSE AUDIO' : 'PLAY AUDIO'}
+              {isPlayingAudio ? 'PAUSE' : 'PLAY'}
             </button>
           </div>
         )}
